@@ -5,7 +5,6 @@ setopt AUTO_CD
 set -o emacs
 unsetopt BEEP
 
-eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
 

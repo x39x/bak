@@ -3,11 +3,11 @@ local M = {
         event = "VeryLazy",
 }
 
-local cmp_border = { " ", " ", " ", " ", " ", " ", " ", " ", }
+local cmp_border = { " ", " ", " ", " ", " ", " ", " ", " " }
 
 local check_backspace = function()
-        local col = vim.fn.col "." - 1
-        return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
+        local col = vim.fn.col(".") - 1
+        return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
 end
 
 local cmp_icons = {
@@ -64,20 +64,32 @@ M.dependencies = {
         },
 }
 
-
 M.config = function()
         local cmp = require("cmp")
         local luasnip = require("luasnip")
-        local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+        local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
         luasnip.config.set_config({
-                enable_autosnippets = true
+                enable_autosnippets = true,
         })
         require("luasnip/loaders/from_vscode").lazy_load({
-                include = { "lua", "cpp", "c", "rust", "go", "python", "javascript", "javascriptreact", "typescript", "typescriptreact", "css", "html" }
+                include = {
+                        "lua",
+                        "cpp",
+                        "c",
+                        "rust",
+                        "go",
+                        "python",
+                        "javascript",
+                        "javascriptreact",
+                        "typescript",
+                        "typescriptreact",
+                        "css",
+                        "html",
+                },
         })
         require("luasnip.loaders.from_vscode").lazy_load({
-                paths = { vim.fn.stdpath("config") .. "/snippets" }
+                paths = { vim.fn.stdpath("config") .. "/snippets" },
         })
 
         cmp.setup({
@@ -89,11 +101,11 @@ M.config = function()
                 window = {
                         completion = {
                                 scrollbar = false,
-                                border = cmp_border
+                                border = cmp_border,
                         },
                         documentation = {
                                 scrollbar = false,
-                                border = cmp_border
+                                border = cmp_border,
                         },
                 },
                 formatting = {
@@ -110,19 +122,19 @@ M.config = function()
                         end,
                 },
                 experimental = {
-                        ghost_text = false
+                        ghost_text = false,
                 },
-                mapping = cmp.mapping.preset.insert {
+                mapping = cmp.mapping.preset.insert({
 
-                        ["<A-e>"] = cmp.mapping {
+                        ["<A-e>"] = cmp.mapping({
                                 i = cmp.mapping.abort(),
                                 c = cmp.mapping.close(),
-                        },
+                        }),
                         ["<C-k>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
                         ["<C-j>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
-                        ['<CR>'] = cmp.mapping.confirm({
+                        ["<CR>"] = cmp.mapping.confirm({
                                 behavior = cmp.ConfirmBehavior.Replace,
-                                select = true
+                                select = true,
                         }),
 
                         ["<Tab>"] = cmp.mapping(function(fallback)
@@ -137,7 +149,7 @@ M.config = function()
                                 else
                                         fallback()
                                 end
-                        end, { "i", "s", }),
+                        end, { "i", "s" }),
 
                         ["<S-Tab>"] = cmp.mapping(function(fallback)
                                 if cmp.visible() then
@@ -147,18 +159,17 @@ M.config = function()
                                 else
                                         fallback()
                                 end
-                        end, { "i", "s", }),
-
-                },
+                        end, { "i", "s" }),
+                }),
                 sources = {
                         { name = "nvim_lsp", max_item_count = 5 },
-                        { name = "luasnip",  max_item_count = 5 },
-                        { name = "buffer",   max_item_count = 5 },
-                        { name = "path",     max_item_count = 5 },
+                        { name = "luasnip", max_item_count = 5 },
+                        { name = "buffer", max_item_count = 5 },
+                        { name = "path", max_item_count = 5 },
                 },
         })
         cmp.event:on( -- insert `(` after select function or method item
-                'confirm_done',
+                "confirm_done",
                 cmp_autopairs.on_confirm_done()
         )
 end
@@ -185,8 +196,7 @@ LSP.config = function()
                         --  ...
                         capabilities = capabilities,
                 }
-                local has_custom_opts, server_custom_opts = pcall(require,
-                        "utils.lsp_settings." .. server)
+                local has_custom_opts, server_custom_opts = pcall(require, "utils.lsp_settings." .. server)
                 if has_custom_opts then
                         opts = vim.tbl_deep_extend("force", opts, server_custom_opts)
                 end

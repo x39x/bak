@@ -1,13 +1,3 @@
-# zprofile: login , zshenv: always
-. "$HOME/.profile"
-
-setopt AUTO_CD
-set -o emacs
-unsetopt BEEP
-
-eval "$(zoxide init zsh)"
-
-
 __fzf_history__() {
     local selected num
     setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null

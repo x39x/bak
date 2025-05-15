@@ -1,0 +1,63 @@
+[General]
+loglevel = notify
+bypass-system = true
+skip-proxy = 127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,100.64.0.0/10,localhost,*.local,e.crashlytics.com,captive.apple.com,::ffff:0:0:0:0/1,::ffff:128:0:0:0/1
+# DNS设置或根据自己网络情况进行相应设置
+bypass-tun = 192.168.0.0/16,10.0.0.0/8,172.16.0.0/12
+hijack-dns = 8.8.8.8:53,8.8.4.4:53
+external-controller-access = password@0.0.0.0:6170
+http-api = password@0.0.0.0:6171
+http-api-web-dashboard = true
+exclude-simple-hostnames = true
+allow-wifi-access = true
+wifi-access-http-port = 6152
+wifi-access-socks5-port = 6153
+read-etc-hosts = true
+wifi-assist = true
+ipv6-vif = off
+ipv6 = false
+udp-policy-not-supported-behaviour = REJECT
+
+[Proxy]
+HK-Y01 = ss, xxx.art, 19273, encrypt-method=xxxx, password=xxx
+[Proxy Group]
+Selected = select, DIRECT, HK-Y01, HK-Y02
+Download = select, DIRECT, Selected
+
+[Rule]
+# NOTE: 广告拦截 / 隐私保护 / Malware拦截 / Phiishing拦截
+DOMAIN-SET,https://ruleset.skk.moe/List/domainset/reject.conf,REJECT
+RULE-SET,https://ruleset.skk.moe/List/non_ip/reject.conf,REJECT
+RULE-SET,https://ruleset.skk.moe/List/non_ip/reject-no-drop.conf,REJECT-NO-DROP
+RULE-SET,https://ruleset.skk.moe/List/non_ip/reject-drop.conf,REJECT-DROP
+# NOTE: CN MEDIA
+RULE-SET,https://gist.githubusercontent.com/v-Ys/341874107e3e030822603a0704e661bd/raw/dcfc4e5ad1ce48c2cc5f2c95bf9add66a4aa8016/cn_mediia.conf,Media-CN
+# NOTE: Appple Microsof CN
+RULE-SET,https://ruleset.skk.moe/List/non_ip/apple_cdn.conf,AM-CN
+RULE-SET,https://ruleset.skk.moe/List/non_ip/microsoft_cdn.conf,AM-CN
+RULE-SET,https://ruleset.skk.moe/List/non_ip/apple_cn.conf,AM-CN
+# NOTE: Apple、Microsoft海外 & 软件游戏下载更新
+RULE-SET,https://ruleset.skk.moe/List/non_ip/apple_services.conf,Download
+RULE-SET,https://ruleset.skk.moe/List/non_ip/microsoft.conf,Download
+DOMAIN-SET,https://ruleset.skk.moe/List/domainset/download.conf,Download
+RULE-SET,https://ruleset.skk.moe/List/non_ip/download.conf,Download
+# NOTE: Global
+RULE-SET,https://ruleset.skk.moe/List/non_ip/global.conf,Selected
+RULE-SET,https://ruleset.skk.moe/List/non_ip/ai.conf,Selected
+RULE-SET,https://ruleset.skk.moe/List/non_ip/cdn.conf,Selected
+DOMAIN-SET,https://ruleset.skk.moe/List/domainset/cdn.conf,Selected
+RULE-SET,https://ruleset.skk.moe/List/non_ip/stream.conf,Media
+# NOTE: CN LAN
+RULE-SET,https://ruleset.skk.moe/List/non_ip/domestic.conf,All-CN
+RULE-SET,https://ruleset.skk.moe/List/non_ip/lan.conf,DIRECT
+RULE-SET,https://ruleset.skk.moe/List/ip/lan.conf,DIRECT
+# NOTE: IP
+RULE-SET,https://ruleset.skk.moe/List/ip/reject.conf,REJECT-DROP
+RULE-SET,https://gist.githubusercontent.com/v-Ys/0030cecfea3af2854925ed87043817e1/raw/805889428287d99fe0292f2760148c49d4e4862d/cn_mediia_ip.conf,Media-CN
+RULE-SET,https://ruleset.skk.moe/List/ip/stream.conf,Media
+RULE-SET,https://ruleset.skk.moe/List/ip/china_ip.conf,All-CN
+FINAL,Selected
+
+[MITM]
+ca-passphrase = 452DD912
+ca-p12 = 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

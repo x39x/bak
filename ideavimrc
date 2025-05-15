@@ -1,0 +1,59 @@
+Plug 'tpope/vim-surround'
+Plug 'preservim/nerdtree'
+
+set clipboard+=unnamed
+set ignorecase
+set scrolloff=30
+set history=200
+set number
+set incsearch
+set hlsearch
+set keep-english-in-normal
+set notimeout
+
+nmap ge <action>(GotoNextError)
+nmap gt <action>(GotoTest)
+nmap gm <action>(MethodUp)
+" last changed in current buffer(file)
+nmap ga '.
+" paste之后不会把yank的内容替换掉
+vmap p "_dp
+
+noremap J j
+noremap L $
+noremap H ^
+let mapleader=" "
+
+nmap <leader>nl :nohlsearch<CR>
+
+nmap <leader>ff <action>(GotoFile)
+nmap <leader>fl <action>(SelectInProjectView)
+nmap <leader>ft <action>(FindInPath)
+nmap <leader>fc <action>(GotoAction)
+nmap <leader>fp <action>(OpenProjectWindows)
+nmap <leader>fm <action>(ReformatCode) \| <action>(OptimizeImports)
+
+nmap <leader>ss <action>(FileStructurePopup)
+nmap <leader>sb <action>(ShowBookmarks)
+nmap <leader>gn <action>(RenameElement)
+
+" r: Run/Re ⭐️
+nmap <leader>mm <action>(Rerun)
+nmap <leader>rt <action>(RerunTests)
+
+" z: zip(fold) ⭐️
+nmap <leader>zo <action>(ExpandAllRegions)
+nmap <leader>zc <action>(CollapseAllRegions)
+
+" e: Extract
+" extract method/function
+vmap <leader>em <action>(ExtractMethod)
+" extract constant
+vmap <leader>ec <action>(IntroduceConstant)
+" extract field
+vmap <leader>ef <action>(IntroduceField)
+" extract variable
+vmap <leader>ev <action>(IntroduceVariable)
+
+" e: Toggle Explorer ⭐️
+nmap <leader>m< ction>(ActivateProjectToolWindow)

@@ -294,3 +294,21 @@ local config = function()
                 end)
         end, 200)
 end
+
+--PLUG:
+M[#M + 1] = {
+        "projekt0n/github-nvim-theme",
+        main = "github-theme",
+        opts = {
+                groups = {
+                        all = {
+                                TabLineSel = { fg = "palette.red", bg = "bg" },
+                                BlinkCmpKind = { link = "KeyWord" },
+                                AlphaHeader = { fg = "#39C5BB" },
+                                IndentLine = { link = "Whitespace" },
+                                IndentLineCurrent = { link = "Whitespace" },
+                        },
+                },
+        },
+        lazy = true,
+}

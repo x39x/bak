@@ -132,3 +132,13 @@ keymap("n", "<leader>ff", require("telescope.builtin").fd, key_opts)
 keymap("n", "<Leader>fs", require("telescope.builtin").colorscheme, key_opts)
 keymap("n", "<leader>fw", require("telescope.builtin").current_buffer_fuzzy_find, key_opts)
 keymap("n", "<leader>fp", require("39.fuzzy_find.zoxide").zoxide, key_opts)
+
+-- hl("TelescopeSelection", { bg = colors.bg5 })
+-- hl("TelescopeSelectionCaret", { link = "TelescopeSelection" })
+-- hl("TelescopeMatching", { bg = colors.yellow3 })
+-- hl("TelescopeBorder", { bg = colors.bg, fg = colors.bg4 })
+--
+-- hl("TelescopeSelection", { bg = colors.gray1 })
+-- hl("TelescopeSelectionCaret", { link = "TelescopeSelection" })
+-- hl("TelescopeMatching", { fg = colors.fg2 })
+-- hl("TelescopeBorder", { bg = colors.bg0, fg = colors.gray3 })

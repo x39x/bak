@@ -1,9 +1,13 @@
+-- telescope theme
+-- prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
+-- results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
+-- preview = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+
 vim.pack.add({
         "https://github.com/nvim-telescope/telescope-ui-select.nvim",
         "https://github.com/nvim-telescope/telescope-live-grep-args.nvim",
         "https://github.com/nvim-telescope/telescope.nvim",
 })
-
 local tools = require("39.fuzzy_find.telescope_tools")
 local theme = tools.picker_theme
 local telescope = require("telescope")

@@ -1,6 +1,7 @@
 --NOTE: mason install
+local M = {}
 
-local config = function()
+M.config = function()
         require("mason").setup()
         local mason_packages = {
                 "stylua",
@@ -29,7 +30,7 @@ local config = function()
 end
 
 --NOTE: spell completion
-local nullls_config = function()
+M.nullls_config = function()
         local null_ls = require("null-ls")
         local completion = null_ls.builtins.completion
         null_ls.setup({
@@ -40,7 +41,7 @@ local nullls_config = function()
 end
 
 --NOTE: LSP rename
-local rename = function()
+M.rename = function()
         local opts = {
                 relative = "cursor",
                 row = 0,
